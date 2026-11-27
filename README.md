@@ -1,6 +1,10 @@
 # AMR-sensor
 Repository containing code, for driving a helmoltz-coil, and measuring/characterizing an AMR-sensor.
 
+Installation of drivers
+-----------------------
+pip install eaps2000 pyserial pyvisa nidaqmx numpy matplotlib pyvisa-py
+
 
 AMR sensor characterisation in a Helmholtz coil.
 ------------------------------------------------
@@ -122,4 +126,3 @@ File layout
 Note: the instrument libraries (eaps2000, pyvisa, nidaqmx) are imported inside the classes,
 not at the top of the file. That way --simulate and --list work on a PC where some of the
 drivers are not installed.
-"""
