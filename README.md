@@ -12,7 +12,7 @@ Powershell:
 
     winget install --id NI.ni-packagemanager -e
 
-install these in NI Package Manager:
+Install these in NI Package Manager:
     
     NI-DAQmx	The myDAQ, used by nidaqmx in the sweep script and relay_test.py
     NI-488.2	GPIB. Your script's default Keithley address is GPIB0::16::INSTR.
