@@ -3,10 +3,13 @@ Repository containing code, for driving a helmoltz-coil, and measuring/character
 
 Installation of drivers
 -----------------------
-    Python:
+
+Python:
+    
     pip install eaps2000 pyserial pyvisa nidaqmx numpy matplotlib pyvisa-py
     
-    Powershell:
+Powershell:
+
     winget install --id NI.ni-packagemanager -e
 
 install these in NI Package Manager:
