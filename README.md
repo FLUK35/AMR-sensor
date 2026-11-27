@@ -3,8 +3,17 @@ Repository containing code, for driving a helmoltz-coil, and measuring/character
 
 Installation of drivers
 -----------------------
+    Python:
     pip install eaps2000 pyserial pyvisa nidaqmx numpy matplotlib pyvisa-py
+    
+    Powershell:
+    winget install --id NI.ni-packagemanager -e
 
+install these in NI Package Manager:
+    
+    NI-DAQmx	The myDAQ, used by nidaqmx in the sweep script and relay_test.py
+    NI-488.2	GPIB. Your script's default Keithley address is GPIB0::16::INSTR.
+    NI ELVISmx	myDAQ front-panel apps (scope, DMM and so on)
 
 AMR sensor characterisation in a Helmholtz coil.
 ------------------------------------------------
