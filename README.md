@@ -126,3 +126,42 @@ File layout
 Note: the instrument libraries (eaps2000, pyvisa, nidaqmx) are imported inside the classes,
 not at the top of the file. That way --simulate and --list work on a PC where some of the
 drivers are not installed.
+
+
+#Hysteresis analysis for AMR sweeps written by amr_helmholtz_sweep.py.
+---------------------------------------------------------------------
+    python analyse_hysteresis.py                        # newest CSV in ./data
+    python analyse_hysteresis.py data/AMR_x.csv [...]   # specific file(s)
+    python analyse_hysteresis.py --all                  # every CSV in ./data
+    python analyse_hysteresis.py --help                 # all options
+
+Pipeline
+  1. Signal = V_bridge_out / V_bridge_supply in mV/V (ratiometric: removes supply drift).
+  2. Optional time-drift correction (--drift).
+  3. Split the sweep into branches by the sign of the setpoint step (rising / falling field).
+     A turning point belongs to both neighbouring branches. The very first branch (unknown
+     magnetic history) is dropped when a later branch of the same direction covers it.
+  4. Interpolate every branch onto a common B grid and average branches of the same direction.
+     Error per grid point = max(loop-to-loop scatter, per-point noise / sqrt(n)), where the
+     per-point noise is max(sample SEM, robust second-difference scatter of the branch).
+  5. Falling - rising difference, loop area, chi^2 (total and with the mean offset removed),
+     branch field shift, remanence at B = 0, field of max |dV/dB|, start/end drift, and a
+     same-direction repeatability (null test) when there are >= 2 branches per direction.
+
+Writes <csv stem>_hysteresis.png and <csv stem>_hysteresis.json next to the CSV (or --out-dir).
+Needs numpy; matplotlib only for the plot.
+
+Background
+----------
+"Hysteresis" here means: the sensor output at a given field B depends on whether B was reached
+from below (rising field) or from above (falling field). If there is none, the rising and
+falling curves lie on top of each other within the noise. The whole script is therefore about
+two questions:
+  * How large is the difference falling - rising, as a function of B?
+  * Is that difference bigger than what noise, drift and repeatability alone would produce?
+
+Real magnetic (switching) hysteresis in an AMR film only appears when the magnetization is
+reversed, i.e. when the field crosses zero far enough to flip it. A unipolar sweep (0 -> +max -> 0)
+can at most show small reversible effects, drift, or thermal lag. The script says so in a note.
+
+Units used throughout: field in mT, time in s, signal in mV/V (ratiometric) or mV (raw).
