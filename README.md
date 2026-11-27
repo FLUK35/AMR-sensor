@@ -3,7 +3,7 @@ Repository containing code, for driving a helmoltz-coil, and measuring/character
 
 Installation of drivers
 -----------------------
-pip install eaps2000 pyserial pyvisa nidaqmx numpy matplotlib pyvisa-py
+    pip install eaps2000 pyserial pyvisa nidaqmx numpy matplotlib pyvisa-py
 
 
 AMR sensor characterisation in a Helmholtz coil.
@@ -74,43 +74,43 @@ Requirements:  pip install eaps2000 pyvisa nidaqmx matplotlib
 
 File layout
 -----------
-  Config              all settings (dataclass) + coil constant + sanity checks
-  
-  PowerSupply         EA-PS wrapper: setup, slew-limited ramp, read back, safe close
-  
-  Keithley            SCPI voltmeter wrapper (DMM or SMU)
-  
-  MyDAQ               analog inputs (incl. the shunt) + digital lines for relay and S/R driver
-  
-  _SimWorld, Sim*     fake instruments for --simulate
-  
-  Rig                 the connected instruments + coil polarity; connect / close in one place
-  
-  build_setpoints     list of setpoints for one loop
-  
-  csv_header          CSV column names for the enabled channels
-  
-  read_sensors,
-  
-  measure_sensors     sensor readings at one point (incl. set/reset handling)
-  
-  measured_current    coil current from the standard source (shunt, or PSU read-back)
-  
-  set_polarity,
-  
-  wait_for_manual_swap reverse the coil (relay or by hand) at zero current
-  
-  measure_point       one full point: polarity, ramp, settle, read, CSV row
-  
-  run                 the measurement itself (connect, sweep, write files, shut down)
-  
-  sr_test             check the set/reset pulses without coil current
-  
-  make_plot           quick PNG of every signal vs B
-  
-  build_parser,
-  
-  apply_args, main    command line -> Config -> run
+      Config              all settings (dataclass) + coil constant + sanity checks
+      
+      PowerSupply         EA-PS wrapper: setup, slew-limited ramp, read back, safe close
+      
+      Keithley            SCPI voltmeter wrapper (DMM or SMU)
+      
+      MyDAQ               analog inputs (incl. the shunt) + digital lines for relay and S/R driver
+      
+      _SimWorld, Sim*     fake instruments for --simulate
+      
+      Rig                 the connected instruments + coil polarity; connect / close in one place
+      
+      build_setpoints     list of setpoints for one loop
+      
+      csv_header          CSV column names for the enabled channels
+      
+      read_sensors,
+      
+      measure_sensors     sensor readings at one point (incl. set/reset handling)
+      
+      measured_current    coil current from the standard source (shunt, or PSU read-back)
+      
+      set_polarity,
+      
+      wait_for_manual_swap reverse the coil (relay or by hand) at zero current
+      
+      measure_point       one full point: polarity, ramp, settle, read, CSV row
+      
+      run                 the measurement itself (connect, sweep, write files, shut down)
+      
+      sr_test             check the set/reset pulses without coil current
+      
+      make_plot           quick PNG of every signal vs B
+      
+      build_parser,
+      
+      apply_args, main    command line -> Config -> run
 
 Note: the instrument libraries (eaps2000, pyvisa, nidaqmx) are imported inside the classes,
 not at the top of the file. That way --simulate and --list work on a PC where some of the
