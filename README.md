@@ -3,7 +3,7 @@ Repository containing code, for driving a helmoltz-coil, and measuring/character
 
 Clone repo:
 -----------
-    git clone 
+    git clone https://github.com/FLUK35/AMR-sensor.git
 
 Installation of drivers
 -----------------------
