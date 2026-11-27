@@ -46,21 +46,14 @@ What it does
 
 Usage
 -----
-  python amr_helmholtz_sweep.py --list                 # show COM ports, VISA resources, DAQ devices
-  
-  python amr_helmholtz_sweep.py --simulate             # dry run with fake instruments
-  
-  python amr_helmholtz_sweep.py --psu-port COM5 --keithley "GPIB0::16::INSTR" --max 2 --step 0.05
-  
-  python amr_helmholtz_sweep.py --bipolar              # +/- sweep, pauses so you can swap the coil leads
-  
-  python amr_helmholtz_sweep.py --no-keithley          # run without one of the instruments
-  
-  python amr_helmholtz_sweep.py --no-daq               # (no shunt: field from the PSU read-back)
-  
-  python amr_helmholtz_sweep.py --sr-test 10           # no coil current: check the set/reset pulses
-  
-  python amr_helmholtz_sweep.py --sr flip              # set+reset at every point, offset-free signal
+    python amr_helmholtz_sweep.py --list                 # show COM ports, VISA resources, DAQ devices
+    python amr_helmholtz_sweep.py --simulate             # dry run with fake instruments
+    python amr_helmholtz_sweep.py --psu-port COM5 --keithley "GPIB0::16::INSTR" --max 2 --step 0.05
+    python amr_helmholtz_sweep.py --bipolar              # +/- sweep, pauses so you can swap the coil leads 
+    python amr_helmholtz_sweep.py --no-keithley          # run without one of the instruments
+    python amr_helmholtz_sweep.py --no-daq               # (no shunt: field from the PSU read-back)
+    python amr_helmholtz_sweep.py --sr-test 10           # no coil current: check the set/reset pulses
+    python amr_helmholtz_sweep.py --sr flip              # set+reset at every point, offset-free signal
 
 Sensor: Honeywell HMC1021S (single axis)
 ----------------------------------------
