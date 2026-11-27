@@ -10,18 +10,14 @@ AMR sensor characterisation in a Helmholtz coil.
 ------------------------------------------------
 Hardware
 --------
-  * EA-PS 2042-10B  (42 V / 10 A)  -> drives the Helmholtz coil   (eaps2000 lib, USB/serial)
-
-  * Keithley DMM/SMU               -> precise DC voltage reading   (pyvisa, GPIB/USB/RS-232)
-  
-  * NI myDAQ                       -> analog inputs (+ optional DO for a polarity relay) (nidaqmx)
-                                      ai0 = bridge supply, ai1 = voltage over the coil-current shunt
-  
-  * Shunt resistor (0.1 ohm) in the coil circuit, low side: PSU minus terminal -> shunt -> coil
-    leads (swapped here for a manual bipolar sweep). It never moves during a swap and its common
-    mode stays near 0 V; the myDAQ inputs only take +/-10 V common mode.
-  
-  * Oscillaboard with the AMR sensor, placed in the centre of the coil
+    EA-PS 2042-10B  (42 V / 10 A)  -> drives the Helmholtz coil   (eaps2000 lib, USB/serial)
+    Keithley DMM/SMU               -> precise DC voltage reading   (pyvisa, GPIB/USB/RS-232)
+    NI myDAQ                       -> analog inputs (+ optional DO for a polarity relay) (nidaqmx)
+                                        ai0 = bridge supply, ai1 = voltage over the coil-current shunt
+    Shunt resistor (0.1 ohm) in the coil circuit, low side: PSU minus terminal -> shunt -> coil
+      leads (swapped here for a manual bipolar sweep). It never moves during a swap and its common
+      mode stays near 0 V; the myDAQ inputs only take +/-10 V common mode.
+    Oscillaboard with the AMR sensor, placed in the centre of the coil
 
 Coil current: the myDAQ shunt measurement is the standard
 ---------------------------------------------------------
