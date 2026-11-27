@@ -7,12 +7,16 @@ AMR sensor characterisation in a Helmholtz coil.
 Hardware
 --------
   * EA-PS 2042-10B  (42 V / 10 A)  -> drives the Helmholtz coil   (eaps2000 lib, USB/serial)
+
   * Keithley DMM/SMU               -> precise DC voltage reading   (pyvisa, GPIB/USB/RS-232)
+  
   * NI myDAQ                       -> analog inputs (+ optional DO for a polarity relay) (nidaqmx)
                                       ai0 = bridge supply, ai1 = voltage over the coil-current shunt
+  
   * Shunt resistor (0.1 ohm) in the coil circuit, low side: PSU minus terminal -> shunt -> coil
     leads (swapped here for a manual bipolar sweep). It never moves during a swap and its common
     mode stays near 0 V; the myDAQ inputs only take +/-10 V common mode.
+  
   * Oscillaboard with the AMR sensor, placed in the centre of the coil
 
 Coil current: the myDAQ shunt measurement is the standard
@@ -78,23 +82,41 @@ Requirements:  pip install eaps2000 pyvisa nidaqmx matplotlib
 File layout
 -----------
   Config              all settings (dataclass) + coil constant + sanity checks
+  
   PowerSupply         EA-PS wrapper: setup, slew-limited ramp, read back, safe close
+  
   Keithley            SCPI voltmeter wrapper (DMM or SMU)
+  
   MyDAQ               analog inputs (incl. the shunt) + digital lines for relay and S/R driver
+  
   _SimWorld, Sim*     fake instruments for --simulate
+  
   Rig                 the connected instruments + coil polarity; connect / close in one place
+  
   build_setpoints     list of setpoints for one loop
+  
   csv_header          CSV column names for the enabled channels
+  
   read_sensors,
+  
   measure_sensors     sensor readings at one point (incl. set/reset handling)
+  
   measured_current    coil current from the standard source (shunt, or PSU read-back)
+  
   set_polarity,
+  
   wait_for_manual_swap reverse the coil (relay or by hand) at zero current
+  
   measure_point       one full point: polarity, ramp, settle, read, CSV row
+  
   run                 the measurement itself (connect, sweep, write files, shut down)
+  
   sr_test             check the set/reset pulses without coil current
+  
   make_plot           quick PNG of every signal vs B
+  
   build_parser,
+  
   apply_args, main    command line -> Config -> run
 
 Note: the instrument libraries (eaps2000, pyvisa, nidaqmx) are imported inside the classes,
